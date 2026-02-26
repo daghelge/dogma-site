@@ -13,9 +13,18 @@ import Logo from "../components/Logo.astro";
 		<title>Dogma</title>
 	</head>
 	<body>
+		<a class="contact" href="mailto:daghelge@gmail.com" aria-label="Contact daghelge@gmail.com">
+			<span data-contact-letter>C</span><span data-contact-letter>o</span><span data-contact-letter>n</span><span
+				data-contact-letter>t</span
+			><span data-contact-letter>a</span><span data-contact-letter>c</span><span data-contact-letter>t</span>
+		</a>
 		<main>
 			<Logo />
 		</main>
+		<script type="module">
+			import { initContactMotion } from "/scripts/contactMotion.js";
+			initContactMotion(document);
+		</script>
 	</body>
 </html>
 
@@ -28,7 +37,33 @@ import Logo from "../components/Logo.astro";
 		background: #f8f7fa;
 	}
 
+	.contact {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		display: inline-flex;
+		gap: 0.05em;
+		font-family: Courier, "Courier New", monospace;
+		font-size: 0.68rem;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: #4a3f5b;
+	}
+
+	.contact [data-contact-letter] {
+		display: inline-block;
+		will-change: transform;
+	}
+
 	main {
 		padding: clamp(1rem, 3vw, 2.5rem);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.contact [data-contact-letter] {
+			transform: none;
+			color: #4a3f5b;
+		}
 	}
 </style>
