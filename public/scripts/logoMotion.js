@@ -12,16 +12,16 @@ export function initLogoMotion(root) {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (reduced.matches) return;
 
-  const letters = [...root.querySelectorAll("[data-letter]")];
+  const letters = [...root.querySelectorAll("[data-letter] path")];
   const colorState = letters.map((el) => ({ el, next: rand(0, 2400) }));
 
   for (const el of letters) {
-    const axis = el.dataset.motion;
-    const amp = axis === "x" ? rand(0.8, 4) : rand(0.8, 3);
+    const axis = el.parentElement?.dataset.motion;
+    const amp = axis === "x" ? rand(1.8, 4) : rand(1.4, 3);
     const signed = Math.random() > 0.5 ? amp : -amp;
     el.style.setProperty(axis === "x" ? "--x" : "--y", `${signed.toFixed(2)}px`);
-    el.style.setProperty("--dur", `${rand(13, 27).toFixed(2)}s`);
-    el.style.setProperty("--delay", `${(-rand(0, 20)).toFixed(2)}s`);
+    el.style.setProperty("--dur", `${rand(10.5, 19).toFixed(2)}s`);
+    el.style.setProperty("--delay", `${(-rand(0, 16)).toFixed(2)}s`);
     el.style.setProperty("--c", tint(rand(-0.04, 0.04)));
   }
 

@@ -27,7 +27,7 @@
 </svg>
 
 <script type="module">
-  import { initLogoMotion } from "../scripts/logoMotion.js";
+  import { initLogoMotion } from "/scripts/logoMotion.js";
   document.querySelectorAll("[data-logo-root]").forEach(initLogoMotion);
 </script>
 
@@ -38,28 +38,25 @@
     overflow: hidden;
   }
 
-  .dogma-logo [data-letter] {
-    --x: 0px;
-    --y: 0px;
-    --dur: 18s;
-    --delay: 0s;
+  .dogma-logo [data-letter] path {
+    --x: 1.4px;
+    --y: 1.1px;
+    --dur: 14.5s;
+    --delay: -2.3s;
     --c: #cabad7;
     --color-dur: 4200ms;
+    fill: var(--c);
     transform-box: fill-box;
     transform-origin: center;
     will-change: transform;
-  }
-
-  .dogma-logo [data-letter] path {
-    fill: var(--c);
     transition: fill var(--color-dur) ease-in-out;
   }
 
-  .dogma-logo [data-motion="x"] {
+  .dogma-logo [data-motion="x"] path {
     animation: logo-x var(--dur) ease-in-out var(--delay) infinite alternate;
   }
 
-  .dogma-logo [data-motion="y"] {
+  .dogma-logo [data-motion="y"] path {
     animation: logo-y var(--dur) ease-in-out var(--delay) infinite alternate;
   }
 
@@ -88,12 +85,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .dogma-logo [data-letter] {
+    .dogma-logo [data-letter] path {
       animation: none;
       transform: none;
-    }
-
-    .dogma-logo [data-letter] path {
       transition: none;
       fill: #cabad7;
     }
